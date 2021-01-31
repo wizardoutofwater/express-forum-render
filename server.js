@@ -42,6 +42,9 @@ var threads = [
         ]
     }
 ];
+
+let idCount = 2;
+
 // GET home page
 app.get('/', (req, res) => {
     res.render('home');
@@ -59,7 +62,6 @@ app.get('/threads/:id', (req, res) => {
     const id = req.params.id;
     const thread = threads.find(thread => thread.id === parseInt(id));
     
-    // res.json(thread);
     if (thread) {
         res.render('thread', {
             locals: {
@@ -72,7 +74,34 @@ app.get('/threads/:id', (req, res) => {
     }
 });
 
-// 
+// POST /threads -- making a new thread
+
+app.post('/threads', (req, res) => {
+    console.log(req.body);
+    // error method below will force a name key
+    // if(!req.body.name || req.body.name == ''){
+    //     // send error 
+    //     res.status(400).send('Please send an owner with a name key');
+    //     return;
+    // }
+    // push new owner w/ new id. 
+    threads.push({...req.body, id: ++idCount});
+    res.json(threads);
+});
+
+// PUT /threads/:id  -- Edit a Message (or add a comment)
+app.put('/threads/:id', (req, res) => {
+    let id = req.params.id;
+    if(!req.body.content || req.body.content == ''){
+        res.status(400).send('bad request it needs content key.');
+        return;
+    }
+
+    let thread = threads.find(thread => thread.id === parseInt(id));
+    thread.content = req.body.content;
+    res.json(thread);
+});
+
 
 app.listen(port, function(){
     console.log('Forum API is now listening on port '+port+'...');
