@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpressForum - All Threads</title>
+    ${head}
+</head>
+<body>
+    <h1>All The Threads!</h1>
+    <!-- <a href="/threads">View A list of threads</a> -->
+    <div class = "list-group">
+        ${threads.map((thread) => {
+            return  `<a href= "/threads/${thread.id}" class = "list-group-item">${thread.title}</li>`
+         }).join('')}
+        </div> 
+</body>
+</html>

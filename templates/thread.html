@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum - ${thread.title}</title>
+    ${head}
 </head>
 <body>
     <h1>${thread.title}</h1>
@@ -11,7 +12,7 @@
     <p>${thread.content}</p>
     <ul>
         ${thread.comments.map((comment) => {
-           return  `<li>${comment.name} says "${comment.message}"</li>`
+           return  `<li>${comment.name} says "${comment.content}"</li>`
         }).join('')}
     </ul>
 </body>
