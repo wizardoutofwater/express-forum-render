@@ -7,13 +7,36 @@
     ${head}
 </head>
 <body>
-    <h1>${thread.title}</h1>
-    <h3>Post</h3>
+    <h1 class= "text-center">An Expressly Express Forum</h1>
+
+   <main class = "container"> 
+    <!-- <div class="my-3 p-3 bg-white rounded box-shadow"> -->
+    <div class="nes-container is-dark with-title">
+        <p class="title">${thread.title}</p>
+        <!-- <div class = "list-group"> -->
+    
+    <!-- <h3>${thread.title}</h3> -->
     <p>${thread.content}</p>
-    <ul>
+    <div class = "lists is-dark">
+    <ul class = "nes-list is-dark is-disc comment-list">
         ${thread.comments.map((comment) => {
-           return  `<li>${comment.name} says "${comment.content}"</li>`
+           return  `<li>${comment.name} - "${comment.content}"</li>`
         }).join('')}
     </ul>
+    </div>
+    <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline ">
+       
+        <input type="text" id="dark_field" class="nes-input is-dark" placeholder="...leave a comment">
+
+
+      </div>
+      <button type="submit" class="nes-btn from-left " >Comment</button>
+    </div>      
+    
+    <a href="/threads">View A list of threads</a>
+    <a href="/newThread">Start a New Thread</a>
+ </main>
 </body>
 </html>
+
+

@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExpressForum - All Threads</title>
     ${head}
+    <style>       
+      body{background:#f5f5f5}
+    .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+    </style>
 </head>
 <body>
-    <h1>All The Threads!</h1>
+    <h1 class= "text-center">All The Threads!</h1>
     <!-- <a href="/threads">View A list of threads</a> -->
+   <main class = "container"> 
+    <div class="my-3 p-3 bg-white rounded box-shadow">
     <div class = "list-group">
         ${threads.map((thread) => {
-            return  `<a href= "/threads/${thread.id}" class = "list-group-item">${thread.title}</li>`
+            return  `<a href= "/threads/${thread.id}" class = "list-group-item">${thread.title}</a>`
          }).join('')}
         </div> 
+        </div>
+    </main>
+      
 </body>
 </html>
