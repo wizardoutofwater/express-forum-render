@@ -44,6 +44,7 @@ var threads = [
 ];
 
 let idCount = 2;
+let commentCount = 3;
 
 // GET home page
 app.get('/', (req, res) => {
@@ -68,6 +69,8 @@ app.get('/threads', (req, res,) => {
         }
     });
 });
+
+
 
 // GET threads/:id -- Render a Single Post
 app.get('/threads/:id', (req, res) => {
@@ -104,16 +107,17 @@ app.post('/threads', (req, res) => {
     res.json(threads);
 });
 
-// PUT /threads/:id  -- Edit a Message 
+// PUT /threads/:id  -- Add a Comment? Or reserve this route for editing a message? -  should i add a /threads/:id/comments POST route?
 app.put('/threads/:id', (req, res) => {
     let id = req.params.id;
-    if(!req.body.content || req.body.content == ''){
-        res.status(400).send('bad request it needs content key.');
+    if(!req.body.comments || req.body.comments == ''){
+        res.status(400).send('bad request it needs comment key.');
         return;
     }
 
     let thread = threads.find(thread => thread.id === parseInt(id));
-    thread.content = req.body.content;
+    thread.comments.push({...req.body, id: ++commentCount});
+
     res.json(thread);
 });
 
