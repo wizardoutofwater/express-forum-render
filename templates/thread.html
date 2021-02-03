@@ -12,7 +12,7 @@
    <main class = "container"> 
     <!-- <div class="my-3 p-3 bg-white rounded box-shadow"> -->
     <div class="nes-container is-dark with-title">
-        <p class="title">${thread.title}</p>
+        <p class="title"><span class="greenText">${thread.name}</span>.${thread.title}</p>
         <!-- <div class = "list-group"> -->
     
     <!-- <h3>${thread.title}</h3> -->
@@ -25,19 +25,27 @@
         }).join('')}
     </ul>
     </div>
-    <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline ">
-        <label for="textarea_field text-small">leave a comment</label>
-        <textarea id="textarea_field" class="nes-textarea is-dark"></textarea>
-        <!-- <input type="text" id="dark_field" class="nes-input is-dark" placeholder="...leave a comment"> -->
+   
+        <form action="/threads/${thread.id}/comments" method="POST">
+            <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
+                <label for="dark_field" style="color:#fff;">Your Name</label>
+                <input type="text" id="dark_field" class="nes-input is-dark" name="name">
+              </div>
+            <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline ">
+                <label for="textarea_field text-small">leave a comment</label>
+                <textarea id="newThreadText" class="nes-textarea is-dark" name="content"></textarea>
+               
+                </br>
 
+            </div>
+            <button id="submitComment" type="submit" class="nes-btn from-left ">Comment</button>
+        </form>
 
       </div>
-      <button type="submit" class="nes-btn from-left " >Comment</button>
-    </div>      
+      
     <div class ="d-flex justify-content-around">
     <a href="/threads">View A list of threads</a>
-    <i class="nes-logo"></i>
-    <a href="/newThread">Start a New Thread</a>
+
 </div>
  </main>
 </body>
