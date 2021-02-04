@@ -1,10 +1,12 @@
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
 const es6Renderer = require("express-es6-template-engine");
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
 
 app.engine("html", es6Renderer);
 app.set("views", "templates");
@@ -57,7 +59,6 @@ app.get("/", (req, res) => {
 });
 
 // GET api/threads/
-
 app.get("/threads", (req, res) => {
   console.log("get rewuuest to threads");
   //   res.json(threads);
@@ -86,7 +87,19 @@ app.get("/threads/:id", (req, res) => {
       },
     });
   } else {
-    res.status(404).send(`no thread with id ${id}`);
+    // res.status(404).send(`no thread with id ${id}`);
+    const error = new Error("Not found");
+    error.status = 404;
+    console.log(error.status);
+    res.render("error", {
+      locals: {
+        thread,
+        error,
+      },
+      partials: {
+        head: "/partials/head",
+      },
+    });
   }
 });
 
@@ -163,6 +176,37 @@ app.delete("/threads/:id", (req, res) => {
 // PUT /threads/:id/comments/:commentId -- edit a comment
 
 // DELETE /threads/:id/comments/:commentId -- delete a comment
+
+// Route to catch all routing errors -- goes right before app.listen
+// app.use((req, res, next) => {
+//     res.status(404).send({
+//     status: 404,
+//     error: ‘Not found’
+//     })
+//    })
+// Routes to catch all routing/server errors not caught inside route declarations
+//  -- goes right before app.listen
+//     app.use((req, res, next) => {
+//     res.status(404).send({
+//     status: 404,
+//     error: ‘Not found’
+//     })
+//    })
+app.use((req, res, next) => {
+  const error = new Error("Not found");
+  error.status = 404;
+  next(error);
+});
+
+// error handler middleware
+app.use((error, req, res, next) => {
+  res.status(error.status || 500).send({
+    error: {
+      status: error.status || 500,
+      message: error.message || "Internal Server Error",
+    },
+  });
+});
 
 app.listen(port, function () {
   console.log("Forum API is now listening on port " + port + "...");
