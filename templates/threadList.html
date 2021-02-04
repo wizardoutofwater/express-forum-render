@@ -12,16 +12,17 @@
 </head>
 
 <body>
-    <h1 class="text-center">All The Threads!</h1>
+    <h1 class="text-center">An Expressly Express Forum!</h1>
     <!-- <a href="/threads">View A list of threads</a> -->
     <main class="container">
         <!-- <div class="my-3 p-3 bg-white rounded box-shadow"> -->
         <div class="nes-container is-dark with-title">
-            <p class="title">Threads.all</p>
+            <p class="title">Threads<span class="yellowText">.all</span></p>
 
-            <div class="list-group">
+            <div class="list-group border border-0" id="allThreads">
                 ${threads.map((thread) => {
-                return `<a href="/threads/${thread.id}" class="list-group-item">${thread.title}</a>`
+                return `<a href="/threads/${thread.id}" class="list-group-item  border border-0">${thread.title}</a>
+                `
                 }).join('')}
             </div>
         </div>
@@ -30,7 +31,7 @@
 
         <!-- Add a new Thread -->
         <div class="nes-container is-dark with-title">
-            <p class="title">Thread.new</p>
+            <p class="title">Thread<span class="yellowText">.new</span></p>
 
             <form action="/threads" method="POST">
                 <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
