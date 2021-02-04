@@ -4,14 +4,16 @@ const app = express();
 const es6Renderer = require("express-es6-template-engine");
 const port = process.env.PORT || 3000;
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use(morgan("dev"));
 
 app.engine("html", es6Renderer);
 app.set("views", "templates");
 app.set("view engine", "html");
-
+// app.use(express.static(__dirname + 'public'));
 var threads = [
   {
     id: 1,
