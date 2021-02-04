@@ -62,6 +62,7 @@ app.get("/", (req, res) => {
 
 // GET api/threads/
 app.get("/threads", (req, res) => {
+  // throw new Error("Something went wrong!");
   console.log("get rewuuest to threads");
   //   res.json(threads);
   res.render("threadList", {
@@ -202,10 +203,21 @@ app.use((req, res, next) => {
 
 // error handler middleware
 app.use((error, req, res, next) => {
-  res.status(error.status || 500).send({
-    error: {
-      status: error.status || 500,
-      message: error.message || "Internal Server Error",
+  // res.status(error.status || 500).send({
+  //   error: {
+  //     status: error.status || 500,
+  //     message: error.message || "Internal Server Error",
+  //   },
+  // });
+  error.status = error.status || 500;
+  error.message = error.message || "internal server error";
+
+  res.render("error", {
+    locals: {
+      error,
+    },
+    partials: {
+      head: "/partials/head",
     },
   });
 });
