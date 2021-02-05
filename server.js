@@ -2,13 +2,22 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 const es6Renderer = require("express-es6-template-engine");
+const session = require("express-session");
 const port = process.env.PORT || 3000;
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan("dev"));
+
+app.use(
+  session({
+    secret: process.env.SECRET_KEY || "dev",
+    resave: true,
+    saveUninitialized: false,
+    cookie: { maxAge: 60000 },
+  })
+);
 
 app.engine("html", es6Renderer);
 app.set("views", "templates");
@@ -107,18 +116,16 @@ app.get("/threads/:id", (req, res) => {
 });
 
 // POST /threads -- making a new thread
-
 app.post("/threads", (req, res) => {
   console.log(req.body);
   // error method below will force a content key
   if (!req.body.content || req.body.content == "") {
-    // send error
     res.status(400).send("Forum Thread Empty. Please include content key");
     return;
   }
   // push new thread w/ new id.
   threads.push({ ...req.body, comments: [], id: ++idCount });
-  // res.json(threads);
+
   res.render("threadList", {
     locals: {
       threads,
@@ -157,7 +164,6 @@ app.post("/threads/:id/comments", (req, res) => {
   let thread = threads.find((thread) => thread.id === parseInt(id));
   thread.comments.push({ ...req.body, id: ++commentCount });
 
-  // res.json(thread);
   res.render("thread", {
     locals: {
       thread,
@@ -174,34 +180,22 @@ app.delete("/threads/:id", (req, res) => {
   res.json(threads);
 });
 
-// POST /threads/:id/comments -- add a comment
+
 
 // PUT /threads/:id/comments/:commentId -- edit a comment
 
 // DELETE /threads/:id/comments/:commentId -- delete a comment
 
-// Route to catch all routing errors -- goes right before app.listen
-// app.use((req, res, next) => {
-//     res.status(404).send({
-//     status: 404,
-//     error: ‘Not found’
-//     })
-//    })
+
 // Routes to catch all routing/server errors not caught inside route declarations
 //  -- goes right before app.listen
-//     app.use((req, res, next) => {
-//     res.status(404).send({
-//     status: 404,
-//     error: ‘Not found’
-//     })
-//    })
+
 app.use((req, res, next) => {
   const error = new Error("Not found");
   error.status = 404;
   next(error);
 });
 
-// error handler middleware
 app.use((error, req, res, next) => {
   // res.status(error.status || 500).send({
   //   error: {
