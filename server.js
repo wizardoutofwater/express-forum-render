@@ -125,7 +125,6 @@ app.post("/threads", (req, res) => {
   }
   // push new thread w/ new id.
   threads.push({ ...req.body, comments: [], id: ++idCount });
-
   res.render("threadList", {
     locals: {
       threads,
@@ -147,8 +146,6 @@ app.put("/threads/:id", (req, res) => {
 
   let thread = threads.find((thread) => thread.id === parseInt(id));
   thread.comments.push({ ...req.body, id: ++commentCount });
-
-  // res.json(thread);
 });
 
 // POST /threads/:id/comments -- testing using POST method to add comments.
@@ -160,7 +157,6 @@ app.post("/threads/:id/comments", (req, res) => {
     res.status(400).send("bad request it needs content key.");
     return;
   }
-
   let thread = threads.find((thread) => thread.id === parseInt(id));
   thread.comments.push({ ...req.body, id: ++commentCount });
 
