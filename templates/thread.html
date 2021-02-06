@@ -12,19 +12,19 @@
    <main class = "container"> 
     <!-- <div class="my-3 p-3  rounded box-shadow"> -->
     <div class="nes-container is-dark with-title">
-        <p class="title"><span class="greenText">${thread.name}</span>.${thread.title}</p>
+        <p class="title"><span class="yellowText">${thread.name}</span>.${thread.title}</p>
         <!-- <div class = "list-group"> -->
     
    
     <p>${thread.content}</p>
         </br>
 
-<div class="nes-container is-dark with-title">
+<div id = "commentContainer" class="nes-container is-dark with-title">
     <p class="title">comments</p>
-    <div class = "lists is-dark">
+    <div class = "lists  is-dark">
     <ul class = "nes-list is-dark is-disc comment-list">
         ${thread.comments.map((comment) => {
-           return  `<li class="comment p-2">${comment.name} - "${comment.content}"</li>`
+           return  `<li class="comment mb-2 p-2">${comment.name} - "${comment.content}"</li>`
         }).join('')}
     </ul>
     </div>
@@ -33,7 +33,7 @@
 </br>
 
 <div class="nes-container is-dark with-title">
-    <p class="title"><span class="greenText">${thread.title}</span>.comments</p>
+    <p class="title"><span class="yellowText">${thread.title}</span>.comments</p>
         <form action="/threads/${thread.id}/comments" method="POST">
             <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
                 <label for="dark_field" style="color:#fff;">Your Name</label>
