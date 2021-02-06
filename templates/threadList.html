@@ -21,7 +21,7 @@
 
             <div class="list-group border border-0" id="allThreads">
                 ${threads.map((thread) => {
-                return `<a href="/threads/${thread.id}" class="list-group-item  border border-0">${thread.title}</a>
+                return `<div><a href="/threads/${thread.id}" class="list-group-item  border border-0">${thread.title}</a>${thread.likes} likes</div> 
                 `
                 }).join('')}
             </div>
