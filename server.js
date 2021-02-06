@@ -49,6 +49,7 @@ var threads = [
     title: "Test Thread 2",
     name: "Sarah",
     content: "this is a test forum post with id 2.",
+    likes: 0,
     comments: [
       {
         id: 1,
