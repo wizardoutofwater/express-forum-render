@@ -22,6 +22,12 @@
             <div class="list-group border border-0" id="allThreads">
                 ${threads.map((thread) => {
                 return `<a href="/threads/${thread.id}" class="list-group-item  border border-0">${thread.title}</a>
+                <ul class="listComments" id="${thread.id}">
+                    ${thread.comments.map(comment =>{
+                      
+                        return `<li>${comment.content}</li>`
+                    }).join('')}
+                </ul>
                 `
                 }).join('')}
             </div>
@@ -54,11 +60,16 @@
 
     </main>
 
-<!-- <script>
-    document.getElementById("submitThread").addEventListener("click", function(event){
-  event.preventDefault()
-});
-</script> -->
+<script>
+    //   document.getElementById('increment').addEventListener('click', () => {
+    //     console.log('increment clicked');
+    //     fetch('/api/increment')
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //         document.getElementById('counter').innerHTML = data;
+    //     });
+    // });
+</script>
 </body>
 
 </html>
