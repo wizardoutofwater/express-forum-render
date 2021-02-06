@@ -10,19 +10,20 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan("dev"));
 
-app.use(
-  session({
-    secret: process.env.SECRET_KEY || "dev",
-    resave: true,
-    saveUninitialized: false,
-    cookie: { maxAge: 60000 },
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SECRET_KEY || "dev",
+//     resave: true,
+//     saveUninitialized: false,
+//     cookie: { maxAge: 60000 },
+//   })
+// );
+// app.use(express.static(__dirname + 'public'));
 
 app.engine("html", es6Renderer);
 app.set("views", "templates");
 app.set("view engine", "html");
-// app.use(express.static(__dirname + 'public'));
+
 var threads = [
   {
     id: 1,
@@ -71,9 +72,7 @@ app.get("/", (req, res) => {
 
 // GET api/threads/
 app.get("/threads", (req, res) => {
-  // throw new Error("Something went wrong!");
-  console.log("get rewuuest to threads");
-  //   res.json(threads);
+
   res.render("threadList", {
     locals: {
       threads,
