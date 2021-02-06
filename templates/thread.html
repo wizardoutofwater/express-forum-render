@@ -23,7 +23,7 @@
 <div id = "commentContainer" class="nes-container is-dark with-title">
     <p class="title">comments</p>
     <div class = "lists  is-dark">
-    <ul class = "nes-list is-dark is-disc comment-list">
+    <ul class = "nes-list list-unstyled is-dark is-disc comment-list">
         ${thread.comments.map((comment) => {
            return  `<li class="comment mb-2 p-2">${comment.name} - "${comment.content}"</li>`
         }).join('')}
