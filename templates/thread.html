@@ -16,14 +16,16 @@
         <!-- <div class = "list-group"> -->
     
    
-    <p>${thread.content}</p>
+    <p>${thread.content}</p> 
+    <div>
+        <button id = "likeBtn" threadId= ${thread.id} type="submit" class="nes-btn from-left ">Like</button>
+    </div>
         </br>
-        <!-- <div><span id="numLikes">${thread.likes} </span><i class="nes-icon is-small heart"></i> </div> -->
 
 <div id = "commentContainer" class="nes-container is-dark with-title">
     <p class="title">comments</p>
     <div class = "lists  is-dark">
-    <ul class = "nes-list list-unstyled is-dark is-disc comment-list">
+    <ul class = "nes-list is-dark is-disc comment-list">
         ${thread.comments.map((comment) => {
            return  `<li class="comment mb-2 p-2">${comment.name} - "${comment.content}"</li>`
         }).join('')}
@@ -32,6 +34,10 @@
 </div>
    </div>
 </br>
+
+<div id="counter">
+
+</div>
 
 <div class="nes-container is-dark with-title">
     <p class="title"><span class="yellowText">${thread.title}</span>.comments</p>
@@ -49,7 +55,7 @@
             </div>
             <div class ="d-flex justify-content-around">
                 <button id="submitComment" type="submit" class="nes-btn from-left ">Comment</button>
-                <button id="likeBtn" type="submit" class="nes-btn from-left ">Like</button>
+              
             
             </div>
         </form>
@@ -61,7 +67,29 @@
 
 </div>
  </main>
- 
+<script>
+        let threadId = document.getElementById("likeBtn").getAttribute("threadId");
+    console.log(threadId); 
+
+     document.getElementById('likeBtn').addEventListener('click', () => {
+        console.log(typeof threadId);     
+   threadId = parseInt(threadId);
+   console.log(typeof threadId);
+    console.log('like clicked');
+     console.log(typeof threadId);
+    
+    
+   
+    });
+
+   
+
+
+        
+    
+
+
+</script>
 </body>
 </html>
 

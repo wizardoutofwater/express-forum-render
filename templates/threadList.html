@@ -14,14 +14,16 @@
 <body>
     <h1 class="text-center">An Expressly Express Forum!</h1>
     <!-- <a href="/threads">View A list of threads</a> -->
-    <main class="container">
+    <main class="container-fluid">
         <!-- <div class="my-3 p-3 bg-white rounded box-shadow"> -->
         <div class="nes-container is-dark with-title">
             <p class="title">Threads<span class="yellowText">.all</span></p>
 
             <div class="list-group border border-0" id="allThreads">
                 ${threads.map((thread) => {
-                return `<a href="/threads/${thread.id}" class="list-group-item  border border-0">${thread.title} <span>${thread.likes} <i class="nes-icon is-small heart"></i></span></a>
+                return `<div class="d-flex justify-content-around">
+                     <a href="/threads/${thread.id}" class="list-group-item  border border-0">${thread.title} </a>
+                     <span>${thread.likes} <i class="nes-icon is-small heart"></i></span></div>
                 `
                 }).join('')}
             </div>
@@ -59,6 +61,6 @@
   event.preventDefault()
 });
 </script> -->
-</body>
+i</body>
 
 </html>
