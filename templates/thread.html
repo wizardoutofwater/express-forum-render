@@ -9,43 +9,50 @@
 </head>
 
 <body>
+    <!-- <div class="nes-container is-dark is-rounded is-centered with-title">
+        <p class="title redText">express.Forum</p>
     <h1 class="text-center">An Expressly Express Forum</h1>
-
+</div> -->
     <main class="container">
-        <!-- <div class="my-3 p-3  rounded box-shadow"> -->
-        <div class="nes-container is-dark with-title">
+<!-- HEADER/NAV -->
+        <div class="nes-container is-dark is-rounded is-centered with-title">
+            <p class="title redText">express.Forum</p>
+        <h1 class="text-center">An Expressly Express Forum</h1>
+      </div>
+
+<!--Main Content  -->
+        <div class="nes-container is-rounded is-dark with-title">
             <p class="title"><span class="yellowText">${thread.name}</span>.${thread.title}</p>
             <!-- <div class = "list-group"> -->
 
 
             <p class="threadContent">${thread.content}</p>
-            <div>
+            
 
         <div class="row d-flex justify-content-around" >
-            <button id="likeBtn" threadId=${thread.id} type="submit" class="nes-btn from-left ml-auto">Like</button>
+            <button id="likeBtn" threadId=${thread.id} type="submit" class="nes-btn  ml-auto">Like</button>
 
-            <div class="yellowText is-large" id="counter">${thread.likes}</div> 
+            <div class="yellowText counter-large" id="counter">${thread.likes}</div> 
             <i class="nes-icon is-medium heart"></i>
         
             </div>
-            </br>
-
-            <div id="commentContainer" class="nes-container is-dark with-title">
-                <p class="title">comments</p>
-                <div class="lists  is-dark">
-                    <ul class="nes-list is-dark is-disc comment-list">
-                        ${thread.comments.map((comment) => {
-                        return `<li class="comment mb-2 p-2">${comment.name} - "${comment.content}"</li>`
-                        }).join('')}
-                    </ul>
-                </div>
-            </div>
-        </div>
+            
+        
         </br>
 
+        <div id="commentContainer" class="nes-container is-rounded is-dark with-title nesThin">
+            <p class="title">comments<span class="yellowText">.all</span></p>
+            <div class="lists  is-dark">
+                <ul class="nes-list is-dark is-disc comment-list">
+                    ${thread.comments.map((comment) => {
+                    return `<li class="comment mb-2 p-2">${comment.name} - "${comment.content}"</li>`
+                    }).join('')}
+                </ul>
+            </div>
+        </div>
 
-        <div class="nes-container is-dark with-title">
-            <p class="title"><span class="yellowText">${thread.title}</span>.comments</p>
+        <div id="nesThin" class="nes-container is-rounded is-dark with-title nesThin">
+            <p class="title">comments<span class="yellowText">.add</span></p>
             <form action="/threads/${thread.id}/comments" method="POST">
                 <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
                     <label for="dark_field" style="color:#fff;">Your Name</label>

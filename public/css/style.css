@@ -54,6 +54,9 @@
     background-color: #212529;
   }
 
+  .counter-large {
+    font-size: large
+  }
   .threadPreview{
     font-size: small;
   }
@@ -81,6 +84,9 @@
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
   }
   #commentContainer {
+    border-width: 2px;
+  }
+  #nesThin {
     border-width: 2px;
   }
   #allThreads {
