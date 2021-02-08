@@ -22,6 +22,12 @@
         padding: 15px;
       }
       .row.content {height: auto;} 
+      .threadTitle , .threadContent{
+        font-size: small;
+      }
+      .threadPreview {
+        font-size: x-small;
+      }
     }
   body {
     background: #212529;
@@ -46,6 +52,15 @@
   }
   .list-group-item {
     background-color: #212529;
+  }
+
+  .threadPreview{
+    font-size: small;
+  }
+  .singleThread{
+    border: 1px solid #fff;
+    border-radius: 0.25rem;
+    /* box-shadow: 0 0.25rem 0.75rem rgba(180, 218, 242, 0.387); */
   }
   .list-group {
     /* background-color: #92cc41; */

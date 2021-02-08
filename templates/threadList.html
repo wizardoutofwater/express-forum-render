@@ -38,20 +38,23 @@
        <div class="col nes-container is-dark with-title">
             <p class="title">Threads<span class="yellowText">.all</span></p>
          
-            <div class="list-group " id="allThreads">
+            <div class="threadList" id="allThreads">
                 ${threads.map((thread) => {
-                return `<div class="row">
+                return `
+                <div class="singleThread  mb-2 p-2">
+                <div class="row">
                     <div class="col d-flex align-items-center  ">
-                     <a href="/threads/${thread.id}" class="list-group-item   ">${thread.title} </a>
+                     <a href="/threads/${thread.id}" class="threadTitle mb-1">${thread.title} </a>
                     
-                     <span class="yellowText text-nowrap">${thread.likes} <i class="nes-icon is-small heart"></i></span>
+                     <span class="yellowText text-nowrap ml-auto">${thread.likes} <i class="nes-icon is-small heart"></i></span>
                     </div>
                 </div>
-                    <div class="row border-bottom">
-                        <span class="d-inline-block text-truncate text-white text-small" style="max-width: 50%;">
+                    <div class="row ">
+                        <span class="col d-block text-truncate text-white  threadPreview" style="max-width: 75%;">
                             ${thread.content}
                            </span>
                     </div>
+                </div>
                     
                     `
                 }).join('')}
