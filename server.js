@@ -147,7 +147,7 @@ app.put("/threads/:id", (req, res) => {
 
   let thread = threads.find((thread) => thread.id === parseInt(id));
   thread.likes++ ;
-  res.json(thread);
+  res.json(thread.likes);
 });
 
 // POST /threads/:id/comments -- testing using POST method to add comments.

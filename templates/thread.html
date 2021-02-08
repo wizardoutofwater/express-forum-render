@@ -1,96 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum - ${thread.title}</title>
     ${head}
 </head>
-<body>
-    <h1 class= "text-center">An Expressly Express Forum</h1>
 
-   <main class = "container"> 
-    <!-- <div class="my-3 p-3  rounded box-shadow"> -->
-    <div class="nes-container is-dark with-title">
-        <p class="title"><span class="yellowText">${thread.name}</span>.${thread.title}</p>
-        <!-- <div class = "list-group"> -->
-    
-   
-    <p>${thread.content}</p> 
-    <div>
-        <button id = "likeBtn" threadId= ${thread.id} type="submit" class="nes-btn from-left ">Like</button>
-    </div>
+<body>
+    <h1 class="text-center">An Expressly Express Forum</h1>
+
+    <main class="container">
+        <!-- <div class="my-3 p-3  rounded box-shadow"> -->
+        <div class="nes-container is-dark with-title">
+            <p class="title"><span class="yellowText">${thread.name}</span>.${thread.title}</p>
+            <!-- <div class = "list-group"> -->
+
+
+            <p>${thread.content}</p>
+            <div>
+
+        <div class="row d=flex justify-content-around" >
+            <button id="likeBtn" threadId=${thread.id} type="submit" class="nes-btn from-left ml-auto">Like</button>
+
+            <div class="yellowText is-large" id="counter">${thread.likes}</div> 
+            <i class="nes-icon is-medium heart"></i>
+        
+            </div>
+            </br>
+
+            <div id="commentContainer" class="nes-container is-dark with-title">
+                <p class="title">comments</p>
+                <div class="lists  is-dark">
+                    <ul class="nes-list is-dark is-disc comment-list">
+                        ${thread.comments.map((comment) => {
+                        return `<li class="comment mb-2 p-2">${comment.name} - "${comment.content}"</li>`
+                        }).join('')}
+                    </ul>
+                </div>
+            </div>
+        </div>
         </br>
 
-<div id = "commentContainer" class="nes-container is-dark with-title">
-    <p class="title">comments</p>
-    <div class = "lists  is-dark">
-    <ul class = "nes-list is-dark is-disc comment-list">
-        ${thread.comments.map((comment) => {
-           return  `<li class="comment mb-2 p-2">${comment.name} - "${comment.content}"</li>`
-        }).join('')}
-    </ul>
-    </div>
-</div>
-   </div>
-</br>
 
-<div id="counter">
+        <div class="nes-container is-dark with-title">
+            <p class="title"><span class="yellowText">${thread.title}</span>.comments</p>
+            <form action="/threads/${thread.id}/comments" method="POST">
+                <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
+                    <label for="dark_field" style="color:#fff;">Your Name</label>
+                    <input type="text" id="dark_field" class="nes-input is-dark" name="name">
+                </div>
+                <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline ">
+                    <label for="textarea_field text-small">leave a comment</label>
+                    <textarea id="newThreadText" class="nes-textarea is-dark" name="content"></textarea>
 
-</div>
+                    </br>
 
-<div class="nes-container is-dark with-title">
-    <p class="title"><span class="yellowText">${thread.title}</span>.comments</p>
-        <form action="/threads/${thread.id}/comments" method="POST">
-            <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
-                <label for="dark_field" style="color:#fff;">Your Name</label>
-                <input type="text" id="dark_field" class="nes-input is-dark" name="name">
-              </div>
-            <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline ">
-                <label for="textarea_field text-small">leave a comment</label>
-                <textarea id="newThreadText" class="nes-textarea is-dark" name="content"></textarea>
-               
-                </br>
-
-            </div>
-            <div class ="d-flex justify-content-around">
-                <button id="submitComment" type="submit" class="nes-btn from-left ">Comment</button>
-              
-            
-            </div>
-        </form>
-
-      </div>
-      
-    <div class ="d-flex justify-content-around">
-    <a href="/threads">View A list of threads</a>
-
-</div>
- </main>
-<script>
-        let threadId = document.getElementById("likeBtn").getAttribute("threadId");
-    console.log(threadId); 
-
-     document.getElementById('likeBtn').addEventListener('click', () => {
-        console.log(typeof threadId);     
-   threadId = parseInt(threadId);
-   console.log(typeof threadId);
-    console.log('like clicked');
-     console.log(typeof threadId);
-    
-    
-   
-    });
-
-   
+                </div>
+                <div class="d-flex justify-content-around">
+                    <button id="submitComment" type="submit" class="nes-btn from-left ">Comment</button>
 
 
-        
-    
+                </div>
+            </form>
 
+        </div>
 
-</script>
+        <div class="d-flex justify-content-around">
+            <a href="/threads">View A list of threads</a>
+
+        </div>
+    </main>
+    <script>
+
+        document.getElementById('likeBtn').addEventListener('click', () => {
+            console.log("theadlike ${thread.id} clicked");
+
+            axios.put('/threads/${thread.id}', {
+
+                })
+                .then(function (response) {
+                    console.log(response.data);
+                    document.getElementById('counter').innerHTML = response.data;
+             
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+    </script>
 </body>
+
 </html>
-
-
