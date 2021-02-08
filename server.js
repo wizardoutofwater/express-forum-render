@@ -30,6 +30,7 @@ var threads = [
     title: "Test Thread 1",
     name: "John",
     content: "This is a test forum post with id 1",
+    likes: 0,
     comments: [
       {
         id: 1,
@@ -48,6 +49,7 @@ var threads = [
     title: "Test Thread 2",
     name: "Sarah",
     content: "this is a test forum post with id 2.",
+    likes: 0,
     comments: [
       {
         id: 1,
@@ -123,7 +125,7 @@ app.post("/threads", (req, res) => {
     return;
   }
   // push new thread w/ new id.
-  threads.push({ ...req.body, comments: [], id: ++idCount });
+  threads.push({ ...req.body, comments: [],likes: 0, id: ++idCount });
   res.render("threadList", {
     locals: {
       threads,
@@ -134,17 +136,18 @@ app.post("/threads", (req, res) => {
   });
 });
 
-// PUT /threads/:id  -- Add a Comment? Or reserve this route for editing a message? -  should i add a /threads/:id/comments POST route?
+// PUT /threads/:id  -- Add a Like
 app.put("/threads/:id", (req, res) => {
   console.log(req.body);
   let id = req.params.id;
-  if (!req.body.content || req.body.content == "") {
-    res.status(400).send("bad request it needs content key.");
-    return;
-  }
+  // if (!req.body.content || req.body.content == "") {
+  //   res.status(400).send("bad request it needs content key.");
+  //   return;
+  // }
 
   let thread = threads.find((thread) => thread.id === parseInt(id));
-  thread.comments.push({ ...req.body, id: ++commentCount });
+  thread.likes++ ;
+  res.json(thread.likes);
 });
 
 // POST /threads/:id/comments -- testing using POST method to add comments.

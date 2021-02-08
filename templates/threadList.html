@@ -14,33 +14,58 @@
 <body>
     <h1 class="text-center">An Expressly Express Forum!</h1>
     <!-- <a href="/threads">View A list of threads</a> -->
-    <main class="container">
+    <div class="container">
+<!--     
+            <div class="col-sm-3 nav sidenav"> 
+                <div class= "nes-container is-dark with-title">
+                <p class="title">Forum<span class="yellowText">.nav</span></p>
+              
+              <ul class="unstyled list nav">
+               <li><a href="#section1">Home</a></li>
+                <li><a href="#section2">Friends</a></li>
+                <li><a href="#section3">Family</a></li>
+                <li><a href="#section3">Photos</a></li>
+              </ul><br>
+              
+            </div>
+        </div>  -->
+    
+            
         <!-- <div class="my-3 p-3 bg-white rounded box-shadow"> -->
-        <div class="nes-container is-dark with-title">
+<!--          
+        <div class="col-sm-9"> -->
+        <div class ="row">
+       <div class="col nes-container is-dark with-title">
             <p class="title">Threads<span class="yellowText">.all</span></p>
-
-            <div class="list-group border border-0" id="allThreads">
+         
+            <div class="list-group " id="allThreads">
                 ${threads.map((thread) => {
-                return `<a href="/threads/${thread.id}" class="list-group-item  border border-0">${thread.title}</a>
-                `
+                return `<div class="row"><div class="col-md-6 d-flex align-items-center justify-content-between ">
+                     <a href="/threads/${thread.id}" class="list-group-item   ">${thread.title} </a>
+                     <span class="yellowText">${thread.likes} <i class="nes-icon is-small heart"></i></span></div>
+                    </div>
+                    `
                 }).join('')}
             </div>
+        </div>
+  
         </div>
 
         </br>
 
         <!-- Add a new Thread -->
-        <div class="nes-container is-dark with-title">
+  <div class = "row">
+        <div class="col nes-container is-dark with-title">
             <p class="title">Thread<span class="yellowText">.new</span></p>
 
             <form action="/threads" method="POST">
                 <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
                     <label for="dark_field" style="color:#fff;">Your Name</label>
-                    <input type="text" id="dark_field" class="nes-input is-dark" name="name" required>
+                    <input type="text" id="dark_field1" class="nes-input is-dark" name="name" required>
                   </div>
                 <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
                     <label for="dark_field" style="color:#fff;">Thread Title</label>
-                    <input type="text" id="dark_field" class="nes-input is-dark" name="title" required>
+                    <input type="text" id="dark_field2" class="nes-input is-dark" name="title" required>
                   </div>  
                 <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline ">
                     <label for="textarea_field text-small">Post a New Thread</label>
@@ -51,14 +76,19 @@
                 <button id="sumbitThread" type="submit" class="nes-btn from-left ">Submit</button>
             </form>
         </div>
+        </div>
+    
+    </div>
+</div>
 
-    </main>
+        
 
+   
 <!-- <script>
     document.getElementById("submitThread").addEventListener("click", function(event){
   event.preventDefault()
 });
 </script> -->
-</body>
+i</body>
 
 </html>
