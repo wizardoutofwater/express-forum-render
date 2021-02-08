@@ -40,10 +40,19 @@
          
             <div class="list-group " id="allThreads">
                 ${threads.map((thread) => {
-                return `<div class="row"><div class="col-md-6 d-flex align-items-center justify-content-between ">
+                return `<div class="row">
+                    <div class="col d-flex align-items-center  ">
                      <a href="/threads/${thread.id}" class="list-group-item   ">${thread.title} </a>
-                     <span class="yellowText">${thread.likes} <i class="nes-icon is-small heart"></i></span></div>
+                    
+                     <span class="yellowText text-nowrap">${thread.likes} <i class="nes-icon is-small heart"></i></span>
                     </div>
+                </div>
+                    <div class="row border-bottom">
+                        <span class="d-inline-block text-truncate text-white text-small" style="max-width: 50%;">
+                            ${thread.content}
+                           </span>
+                    </div>
+                    
                     `
                 }).join('')}
             </div>
@@ -84,11 +93,7 @@
         
 
    
-<!-- <script>
-    document.getElementById("submitThread").addEventListener("click", function(event){
-  event.preventDefault()
-});
-</script> -->
-i</body>
+
+</body>
 
 </html>
