@@ -1,6 +1,6 @@
 
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-    .row.content {height: 60vh}
+    .row.content {height: 100vh}
     
     /* Set gray background color and 100% height */
     .sidenav {
@@ -74,7 +74,7 @@
   }
   .comment {
     border: 1px solid #fff;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
   }
   .text-small {
     font-size: small;

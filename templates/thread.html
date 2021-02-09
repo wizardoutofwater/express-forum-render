@@ -15,10 +15,9 @@
 </div> -->
     <main class="container">
 <!-- HEADER/NAV -->
-        <div class="nes-container is-dark is-rounded is-centered with-title">
-            <p class="title redText">express.Forum</p>
-        <h1 class="text-center">An Expressly Express Forum</h1>
-      </div>
+<div class="row">
+    ${nav}
+</div>
 
 <!--Main Content  -->
         <div class="nes-container is-rounded is-dark with-title">
@@ -43,13 +42,14 @@
         <div id="commentContainer" class="nes-container is-rounded is-dark with-title nesThin">
             <p class="title">comments<span class="yellowText">.all</span></p>
             <div class="lists  is-dark">
-                <ul class="nes-list is-dark is-disc comment-list">
+                <ul class="nes-list is-dark is-disc list-unstyled comment-list">
                     ${thread.comments.map((comment) => {
-                    return `<li class="comment mb-2 p-2">${comment.name} - "${comment.content}"</li>`
+                    return `<li class="comment rounded-bottom mb-2 p-2"><span class="yellowText">${comment.name}</span> - "${comment.content}"</li>`
                     }).join('')}
                 </ul>
             </div>
         </div>
+    </br>
 
         <div id="nesThin" class="nes-container is-rounded is-dark with-title nesThin">
             <p class="title">comments<span class="yellowText">.add</span></p>

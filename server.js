@@ -69,6 +69,7 @@ app.get("/", (req, res) => {
   res.render("home", {
     partials: {
       head: "/partials/head",
+      nav: "/partials/nav"
     },
   });
 });
@@ -82,6 +83,7 @@ app.get("/threads", (req, res) => {
     },
     partials: {
       head: "/partials/head",
+      nav: "/partials/nav"
     },
   });
 });
@@ -98,6 +100,7 @@ app.get("/threads/:id", (req, res) => {
       },
       partials: {
         head: "/partials/head",
+        nav: "/partials/nav"
       },
     });
   } else {
@@ -112,6 +115,7 @@ app.get("/threads/:id", (req, res) => {
       },
       partials: {
         head: "/partials/head",
+        nav: "/partials/nav"
       },
     });
   }
@@ -133,6 +137,7 @@ app.post("/threads", (req, res) => {
     },
     partials: {
       head: "/partials/head",
+      nav: "/partials/nav"
     },
   });
 });
@@ -169,6 +174,7 @@ app.post("/threads/:id/comments", (req, res) => {
     },
     partials: {
       head: "/partials/head",
+      nav: "/partials/nav"
     },
   });
 });
@@ -211,6 +217,7 @@ app.use((error, req, res, next) => {
     },
     partials: {
       head: "/partials/head",
+      nav: "/partials/nav"
     },
   });
 });

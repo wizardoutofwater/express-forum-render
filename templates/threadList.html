@@ -12,10 +12,14 @@
 </head>
 
 <body>
-    <h1 class="text-center">An Expressly Express Forum!</h1>
+
     <!-- <a href="/threads">View A list of threads</a> -->
+ 
     <div class="container">
-<!--     
+        <div class="row">
+                   ${nav}
+    </div>
+        <!--     
             <div class="col-sm-3 nav sidenav"> 
                 <div class= "nes-container is-dark with-title">
                 <p class="title">Forum<span class="yellowText">.nav</span></p>
@@ -35,7 +39,7 @@
 <!--          
         <div class="col-sm-9"> -->
         <div class ="row">
-       <div class="col nes-container is-dark with-title">
+       <div class="col nes-container is-rounded is-dark with-title">
             <p class="title">Threads<span class="yellowText">.all</span></p>
          
             <div class="threadList" id="allThreads">
@@ -67,7 +71,7 @@
 
         <!-- Add a new Thread -->
   <div class = "row">
-        <div class="col nes-container is-dark with-title">
+        <div class="col nes-container is-rounded is-dark with-title">
             <p class="title">Thread<span class="yellowText">.new</span></p>
 
             <form action="/threads" method="POST">
