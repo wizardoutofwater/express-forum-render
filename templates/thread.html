@@ -9,43 +9,50 @@
 </head>
 
 <body>
-    <h1 class="text-center">An Expressly Express Forum</h1>
-
-    <main class="container">
-        <!-- <div class="my-3 p-3  rounded box-shadow"> -->
-        <div class="nes-container is-dark with-title">
+   
+    <div class="container">
+<!-- HEADER/NAV -->
+<div class="row">
+    ${nav}
+</div>
+</br>
+<!--Main Content  -->
+<div class="row">
+        <div class="col nes-container is-rounded is-dark with-title">
             <p class="title"><span class="yellowText">${thread.name}</span>.${thread.title}</p>
             <!-- <div class = "list-group"> -->
 
 
             <p class="threadContent">${thread.content}</p>
-            <div>
+            
 
-        <div class="row d-flex justify-content-around" >
-            <button id="likeBtn" threadId=${thread.id} type="submit" class="nes-btn from-left ml-auto">Like</button>
+        <div class="row d-flex justify-content-around align-items-center" >
+            <button id="likeBtn" threadId=${thread.id} type="submit" class="nes-btn  ml-auto">Like</button>
 
-            <div class="yellowText is-large" id="counter">${thread.likes}</div> 
-            <i class="nes-icon is-medium heart"></i>
+            <div class="yellowText counter-large " id="counter">${thread.likes}</div> 
+            <i class="nes-icon  heart"></i>
         
             </div>
-            </br>
-
-            <div id="commentContainer" class="nes-container is-dark with-title">
-                <p class="title">comments</p>
-                <div class="lists  is-dark">
-                    <ul class="nes-list is-dark is-disc comment-list">
-                        ${thread.comments.map((comment) => {
-                        return `<li class="comment mb-2 p-2">${comment.name} - "${comment.content}"</li>`
-                        }).join('')}
-                    </ul>
-                </div>
+        </div> 
+        </div>
+        
+        </br>
+<div class="row">
+        <div id="commentContainer" class="col nes-container is-rounded is-dark with-title nesThin">
+            <p class="title">comments<span class="yellowText">.all</span></p>
+            <div class="lists  is-dark">
+                <ul class="nes-list is-dark is-disc list-unstyled comment-list">
+                    ${thread.comments.map((comment) => {
+                    return `<li class="comment rounded-bottom shadow-lg  mb-2 p-2"><span class="yellowText">${comment.name}</span> - "${comment.content}"</li>`
+                    }).join('')}
+                </ul>
             </div>
         </div>
-        </br>
-
-
-        <div class="nes-container is-dark with-title">
-            <p class="title"><span class="yellowText">${thread.title}</span>.comments</p>
+    </div>
+ 
+<div class="row">
+        <div id="nesThin" class="col nes-container is-rounded is-dark with-title nesThin">
+            <p class="title">comments<span class="yellowText">.add</span></p>
             <form action="/threads/${thread.id}/comments" method="POST">
                 <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
                     <label for="dark_field" style="color:#fff;">Your Name</label>
@@ -66,12 +73,15 @@
             </form>
 
         </div>
+    </div>
 
-        <div class="d-flex justify-content-around">
+        <!-- <div class="d-flex justify-content-around">
             <a href="/threads">View A list of threads</a>
 
-        </div>
-    </main>
+        </div> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
     <script>
 
         document.getElementById('likeBtn').addEventListener('click', () => {
