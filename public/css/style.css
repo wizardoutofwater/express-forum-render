@@ -33,9 +33,13 @@
     background: #212529;
     font-family: "Press Start 2P", cursive;
   }
-  h1 {
+  h1, .navbar-brand {
     color: #20a0f8;
   }
+ #navbar-brand {
+    color: #20a0f8;
+  }
+
   h3,
   .redText {
     color: #f87068;
