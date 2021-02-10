@@ -1,0 +1,1 @@
+<span class="col d-block text-truncate text-white threadPreview" style="max-width: 100%;">
